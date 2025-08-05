@@ -2,6 +2,8 @@ package org.dataStructure.arrays;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ArraysChallenges {
     // LeetCode 88
@@ -42,7 +44,67 @@ public class ArraysChallenges {
         return res;
     }
 
+    public static int[] removeEven(int[] arr) {
+        // int[] res = new int[] {};
+        int oddCount = 0;
+
+        // to track the odd #
+        for (int j : arr) {
+            if (j % 2 != 0) {
+                oddCount++;
+            }
+        }
+
+        int[] res = new int[oddCount];
+        int index = 0;
+        // if num is odd number add to res
+        for (int num : arr) {
+            if (num % 2 != 0) {
+                res[index++] = num;
+            }
+        }
+
+        return res;
+    }
+
+    public int[] twoSum(int[] nums, int target) {
+        Map<Integer, Integer> myMap = new HashMap<>();
+
+        for (int i = 0; i < nums.length; i++) {
+            int diff = target - nums[i];
+            if (myMap.containsKey(diff)) {
+                return new int[]{myMap.get(diff), i};
+            }
+
+            myMap.put(nums[i], i);
+        }
+
+        return new int[]{};
+    }
+
+//    public static int[] findSumStream(int[] arr, int k) {
+//        // make arr to stream
+//        return Arrays.stream(arr)
+//                .flatMap(num ->
+//                        Arrays.stream(arr)
+//                                .filter(other -> num != other)
+//                                .filter(other -> num + other == k)
+//                                .mapToObj(other -> new int[]{num, other})
+//                )
+//                .findFirst()
+//                .orElse(new int[]{});
+//
+//    }
+
     public static void main(String[] args) {
+        // 1. Remove Even Numbers
+        int[] test = {0, 20, 41};
+        int [] res = removeEven(test);
+
+        for(int num : res) {
+            System.out.println(num);
+        }
+
         // 2. MergeArrays
         ArrayList<ArrayList<Integer>> nums1 = new ArrayList<>();
         nums1.add(new ArrayList<>(Arrays.asList(23, 33, 35, 41, 44, 47, 56, 91, 105)));

@@ -16,6 +16,15 @@ class ArraysChallengesTest {
     }
 
     @Test
+    void removeEven() {
+        int[] inputArray = {1, 2, 4, 5, 10, 6, 3};
+        int[] expectedArray = {1, 5, 3};
+
+        int[] res = ArraysChallenges.removeEven(inputArray);
+        assertArrayEquals(expectedArray, res);
+    }
+
+    @Test
     void mergeArray() {
 
     }
